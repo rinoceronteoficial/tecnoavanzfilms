@@ -230,7 +230,8 @@
     font-size: 1em;
     letter-spacing: 3px;
     color: var(--white);
-    animation: glowNav 3s ease-in-out infinite;
+    display: inline-block;
+    animation: logoSpin 6s linear infinite;
   }
 
   .hamburger {
@@ -475,6 +476,102 @@
       opacity: 1;
     }
   }
+
+  @keyframes logoSpin {
+    0% { transform: perspective(600px) rotateY(0deg); }
+    100% { transform: perspective(600px) rotateY(360deg); }
+  }
+
+  @keyframes glowPulseText {
+    0%, 100% { text-shadow: 0 0 10px rgba(255,255,255,0.2); opacity: 0.85; }
+    50% { text-shadow: 0 0 25px rgba(255,255,255,0.9), 0 0 50px rgba(255,255,255,0.3); opacity: 1; }
+  }
+
+  @keyframes float3d {
+    0%, 100% { transform: perspective(1000px) rotateX(2deg) rotateY(-1deg) translateY(0); }
+    33% { transform: perspective(1000px) rotateX(-1deg) rotateY(2deg) translateY(-8px); }
+    66% { transform: perspective(1000px) rotateX(1deg) rotateY(-2deg) translateY(-4px); }
+  }
+
+  @keyframes borderGlowWhite {
+    0%, 100% { box-shadow: 0 0 10px rgba(255,255,255,0.1), 0 30px 80px rgba(0,0,0,0.8); }
+    50% { box-shadow: 0 0 30px rgba(255,255,255,0.3), 0 30px 80px rgba(0,0,0,0.8); }
+  }
+
+  /* VIDEO HERO 3D */
+  .video-hero-wrap {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto 35px;
+  }
+
+  .video-hero-3d {
+    animation: float3d 8s ease-in-out infinite;
+    transform-style: preserve-3d;
+  }
+
+  .video-hero-frame {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(245,245,240,0.5);
+    animation: borderGlowWhite 4s ease-in-out infinite;
+  }
+
+  .video-hero-frame video,
+  .video-hero-frame iframe {
+    width: 100%; aspect-ratio: 16/9; display: block; background: #000;
+  }
+
+  .video-hero-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #111, #1a1a1a);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .play-btn-w {
+    width: 65px; height: 65px;
+    border-radius: 50%;
+    border: 1px solid rgba(245,245,240,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6em;
+    color: rgba(245,245,240,0.6);
+  }
+
+  .video-ph-text {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7em;
+    letter-spacing: 3px;
+    color: rgba(245,245,240,0.3);
+  }
+
+  .corner { position: absolute; width: 16px; height: 16px; z-index: 2; }
+  .corner-tl { top: -1px; left: -1px; border-top: 1px solid rgba(245,245,240,0.8); border-left: 1px solid rgba(245,245,240,0.8); }
+  .corner-tr { top: -1px; right: -1px; border-top: 1px solid rgba(245,245,240,0.8); border-right: 1px solid rgba(245,245,240,0.8); }
+  .corner-bl { bottom: -1px; left: -1px; border-bottom: 1px solid rgba(245,245,240,0.8); border-left: 1px solid rgba(245,245,240,0.8); }
+  .corner-br { bottom: -1px; right: -1px; border-bottom: 1px solid rgba(245,245,240,0.8); border-right: 1px solid rgba(245,245,240,0.8); }
+
+  /* HIDDEN ADMIN BUTTON */
+  .admin-hidden-btn {
+    display: block;
+    margin: 10px auto 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    opacity: 0.1;
+    transition: opacity 0.3s;
+    font-size: 1em;
+    color: var(--white);
+  }
+  .admin-hidden-btn:hover { opacity: 0.4; }
 
   @keyframes glowNav {
     0%, 100% {
@@ -755,6 +852,14 @@
   <div class="admin-grid">
 
     <div class="admin-card">
+      <h3>🎬 VIDEO PRINCIPAL</h3>
+      <input type="file" id="hero-video-upload" accept="video/*" style="color:var(--white);padding:5px 0;font-size:0.85em;">
+      <button class="admin-btn" onclick="uploadHeroVideo()">SUBIR VIDEO PRINCIPAL</button>
+      <input type="text" id="hero-video-url" placeholder="O pega URL de YouTube" style="margin-top:8px;">
+      <button class="admin-btn" onclick="addHeroVideoUrl()">USAR URL YOUTUBE</button>
+    </div>
+
+    <div class="admin-card">
       <h3>📱 NÚMERO WHATSAPP</h3>
       <input type="text" id="edit-phone" placeholder="Número (10 dígitos)" value="5528037991">
       <button class="admin-btn" onclick="updatePhone()">ACTUALIZAR NÚMERO</button>
@@ -801,7 +906,7 @@
 <!-- NAVBAR -->
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo">SANGRE AZTECA</div>
+    <div class="nav-logo">MARIACHI SANGRE AZTECA</div>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </button>
@@ -811,7 +916,6 @@
       <li><a href="#galeria" onclick="closeMenu()">GALERÍA</a></li>
       <li><a href="#videos" onclick="closeMenu()">VIDEOS</a></li>
       <li><a href="#contacto" onclick="closeMenu()">CONTACTO</a></li>
-      <li><a href="#" class="nav-admin" onclick="openLogin(event)">⚙ ADMIN</a></li>
     </ul>
   </div>
 </nav>
@@ -819,8 +923,28 @@
 <!-- HERO -->
 <section id="inicio">
   <div class="hero-content">
-    <div class="hero-pre">✦ OAXACA, MÉXICO ✦</div>
-    <h1 class="hero-title">MARIACHI<br>SANGRE<br>AZTECA</h1>
+
+    <!-- LOGO PULSANTE GRANDE ARRIBA DEL VIDEO -->
+    <div style="font-family:'Caesar Dressing','Uncial Antiqua',serif;font-size:clamp(1.8em,5vw,3.2em);letter-spacing:4px;text-align:center;margin-bottom:25px;color:var(--white);animation:glowPulseText 3s ease-in-out infinite;line-height:1.2;">
+      MARIACHI<br>SANGRE AZTECA
+    </div>
+
+    <!-- VIDEO HERO 3D -->
+    <div class="video-hero-wrap">
+      <div class="video-hero-3d">
+        <div class="video-hero-frame" id="hero-frame">
+          <div class="corner corner-tl"></div>
+          <div class="corner corner-tr"></div>
+          <div class="corner corner-bl"></div>
+          <div class="corner corner-br"></div>
+          <div class="video-hero-placeholder" id="hero-placeholder">
+            <div class="play-btn-w">▶</div>
+            <div class="video-ph-text">SUBE TU VIDEO DESDE EL PANEL ADMIN</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="hero-subtitle">MÚSICA TRADICIONAL MEXICANA</div>
     <div class="hero-divider">
       <div class="hero-divider-line"></div>
@@ -959,6 +1083,7 @@
   <div class="footer-logo">MARIACHI SANGRE AZTECA</div>
   <div class="footer-sub" style="margin-top:8px;">OAXACA · MÉXICO</div>
   <div class="footer-sub" style="margin-top:8px;opacity:0.4;">© 2025 · TODOS LOS DERECHOS RESERVADOS</div>
+  <button class="admin-hidden-btn" onclick="openLogin(event)">⚙</button>
 </footer>
 
 <script>
@@ -971,10 +1096,47 @@ function closeMenu() {
   document.getElementById('hamburger').classList.remove('open');
 }
 function openLogin(e) {
-  e.preventDefault();
+  if (e) e.preventDefault();
   closeMenu();
   document.getElementById('login-modal').classList.add('active');
   setTimeout(() => document.getElementById('admin-pass').focus(), 200);
+}
+
+function uploadHeroVideo() {
+  const file = document.getElementById('hero-video-upload').files[0];
+  if (!file) { showToast('Selecciona un video'); return; }
+  const frame = document.getElementById('hero-frame');
+  const ph = document.getElementById('hero-placeholder');
+  if (ph) ph.remove();
+  const old = frame.querySelector('video,iframe');
+  if (old) old.remove();
+  const v = document.createElement('video');
+  v.src = URL.createObjectURL(file);
+  v.controls = true; v.autoplay = true; v.muted = true; v.loop = true;
+  v.style.cssText = 'width:100%;aspect-ratio:16/9;display:block;background:#000;';
+  frame.appendChild(v);
+  showToast('✓ Video principal actualizado');
+}
+
+function addHeroVideoUrl() {
+  const url = document.getElementById('hero-video-url').value.trim();
+  if (!url) { showToast('Ingresa una URL'); return; }
+  let embed = url;
+  if (url.includes('youtube.com/watch?v=')) embed = url.replace('watch?v=', 'embed/') + '?autoplay=1&mute=1&loop=1';
+  else if (url.includes('youtu.be/')) embed = 'https://www.youtube.com/embed/' + url.split('youtu.be/')[1] + '?autoplay=1&mute=1&loop=1';
+  const frame = document.getElementById('hero-frame');
+  const ph = document.getElementById('hero-placeholder');
+  if (ph) ph.remove();
+  const old = frame.querySelector('video,iframe');
+  if (old) old.remove();
+  const iframe = document.createElement('iframe');
+  iframe.src = embed;
+  iframe.frameBorder = '0';
+  iframe.allow = 'autoplay; fullscreen';
+  iframe.style.cssText = 'width:100%;aspect-ratio:16/9;display:block;';
+  frame.appendChild(iframe);
+  showToast('✓ Video principal actualizado');
+  document.getElementById('hero-video-url').value = '';
 }
 function closeLogin() {
   document.getElementById('login-modal').classList.remove('active');
