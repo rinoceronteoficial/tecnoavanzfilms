@@ -261,6 +261,11 @@
     list-style: none;
   }
 
+  @keyframes shimmerSlide {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
   .nav-links a {
     color: var(--white-dim);
     text-decoration: none;
@@ -272,11 +277,18 @@
     border: 1px solid transparent;
     transition: all 0.3s;
     white-space: nowrap;
+    background: linear-gradient(90deg, var(--white-dim) 0%, var(--white-dim) 40%, rgba(255,255,255,1) 50%, var(--white-dim) 60%, var(--white-dim) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmerSlide 4s linear infinite;
   }
   .nav-links a:hover {
-    color: var(--white);
     border-color: var(--border);
     background: var(--white-faint);
+    -webkit-text-fill-color: var(--white);
+    animation: none;
   }
 
   .nav-admin {
@@ -605,17 +617,26 @@
     font-family: 'Cinzel', serif;
     font-size: 0.65em;
     letter-spacing: 6px;
-    color: var(--white-dim);
     margin-bottom: 12px;
+    background: linear-gradient(90deg, var(--white-dim) 0%, var(--white-dim) 35%, rgba(255,255,255,1) 50%, var(--white-dim) 65%, var(--white-dim) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmerSlide 4s linear infinite;
   }
 
   .section-title {
     font-family: 'Cinzel Decorative', serif;
     font-weight: 700;
     font-size: clamp(1.4em, 4vw, 2.2em);
-    color: var(--white);
     letter-spacing: 1px;
-    animation: glowPulseSoft 4s ease-in-out infinite;
+    background: linear-gradient(90deg, var(--white-dim) 0%, var(--white-dim) 35%, rgba(255,255,255,1) 50%, var(--white-dim) 65%, var(--white-dim) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmerSlide 4s linear infinite;
   }
 
   .section-line {
@@ -937,10 +958,7 @@
           <div class="corner corner-tr"></div>
           <div class="corner corner-bl"></div>
           <div class="corner corner-br"></div>
-          <div class="video-hero-placeholder" id="hero-placeholder">
-            <div class="play-btn-w">▶</div>
-            <div class="video-ph-text">SUBE TU VIDEO DESDE EL PANEL ADMIN</div>
-          </div>
+          <iframe src="https://www.youtube.com/embed/tBFsnhpNI7A" frameborder="0" allowfullscreen style="width:100%;aspect-ratio:16/9;display:block;"></iframe>
         </div>
       </div>
     </div>
@@ -1048,12 +1066,12 @@
         <p style="font-style:italic;color:var(--white-dim);margin-bottom:5px;">
           Disponibles para toda la ciudad de Oaxaca y alrededores.
         </p>
-        <a href="https://wa.me/525528037991" target="_blank" class="contact-wa" id="wa-link">
+        <a href="https://wa.me/529512301481" target="_blank" class="contact-wa" id="wa-link">
           <span>📱</span> ESCRIBIR A WHATSAPP
         </a>
         <div class="contact-info">
           <span class="contact-label">TELÉFONO</span>
-          <span id="contact-phone">55 2803 7991</span>
+          <span id="contact-phone">951 230 1481</span>
           <br>
           <span class="contact-label" style="margin-top:12px;">UBICACIÓN</span>
           <span>Oaxaca de Juárez, Oaxaca</span>
