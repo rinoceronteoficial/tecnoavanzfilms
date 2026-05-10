@@ -7,10 +7,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Cormorant+Garamond:wght@400;600&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ruby: #9B0E2E;
-    --ruby-dark: #6B0920;
-    --ruby-deep: #3D0412;
-    --ruby-light: #C41E3A;
+    --ruby: #00E5CC;
+    --ruby-dark: #00B8A3;
+    --ruby-deep: #004D45;
+    --ruby-light: #00FFE5;
     --gold: #C9A84C;
     --gold-light: #E8C97A;
     --gold-bright: #F0D060;
@@ -224,20 +224,14 @@
     font-family: 'Cinzel', serif;
     font-weight: 900;
     font-size: 1.1em;
-    background: linear-gradient(135deg, 
-      #3D2B00 0%,
-      #7A5C1E 20%, 
-      #C9A84C 35%, 
-      #F5E6A3 50%, 
-      #C9A84C 65%, 
-      #7A5C1E 80%,
-      #3D2B00 100%);
+    background: linear-gradient(135deg, var(--gold-shadow) 0%, var(--gold-dark) 20%, var(--gold) 40%, var(--gold-shine) 55%, var(--gold) 70%, var(--gold-dark) 85%, var(--gold-shadow) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-shadow: none;
     letter-spacing: 2px;
-    filter: drop-shadow(0 0 8px rgba(100,70,10,0.6));
+    display: inline-block;
+    animation: logoSpin 6s linear infinite;
   }
 
   .hamburger {
@@ -265,28 +259,38 @@
     display: flex;
     gap: 5px;
     list-style: none;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: flex-end;
   }
 
+  @keyframes shimmerSlide {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
   .nav-links a {
-    color: var(--gold);
     text-decoration: none;
     font-family: 'Cinzel', serif;
     font-size: 0.7em;
     letter-spacing: 1px;
     padding: 6px 10px;
     border-radius: 4px;
-    background: linear-gradient(135deg, rgba(155,14,46,0.6), rgba(107,9,32,0.8));
     border: 1px solid rgba(212,175,55,0.3);
     transition: all 0.3s;
     white-space: nowrap;
+    background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-dark) 35%, var(--gold-shine) 50%, var(--gold-dark) 65%, var(--gold-dark) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmerSlide 4s linear infinite;
   }
 
   .nav-links a:hover {
-    background: linear-gradient(135deg, var(--ruby), var(--ruby-dark));
     border-color: var(--gold);
     box-shadow: 0 0 10px rgba(212,175,55,0.4);
+    animation: none;
+    -webkit-text-fill-color: var(--gold-shine);
   }
 
   .admin-trigger {
@@ -342,8 +346,8 @@
     text-align: center;
     position: relative;
     background:
-      radial-gradient(ellipse at 20% 50%, rgba(196,30,58,0.3) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 50%, rgba(155,14,46,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 50%, rgba(0,229,204,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(0,229,204,0.1) 0%, transparent 60%),
       linear-gradient(180deg, var(--ruby-deep) 0%, var(--ruby-dark) 50%, var(--ruby-deep) 100%);
     padding: 100px 20px 60px;
   }
@@ -455,26 +459,25 @@
     font-family: 'Cinzel', serif;
     font-size: 0.75em;
     letter-spacing: 5px;
-    color: var(--gold-dark);
     text-transform: uppercase;
     margin-bottom: 10px;
+    background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-dark) 35%, var(--gold-shine) 50%, var(--gold-dark) 65%, var(--gold-dark) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmerSlide 4s linear infinite;
   }
 
   .section-title {
     font-family: 'Cinzel', serif;
     font-size: clamp(1.6em, 4vw, 2.5em);
-    background: linear-gradient(135deg, 
-      #3D2B00 0%,
-      #7A5C1E 20%, 
-      #C9A84C 40%, 
-      #F5E6A3 55%, 
-      #C9A84C 70%, 
-      #7A5C1E 85%,
-      #3D2B00 100%);
+    background: linear-gradient(90deg, #7A5C1E 0%, #7A5C1E 30%, #F5E6A3 50%, #7A5C1E 70%, #7A5C1E 100%);
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 2px 8px rgba(80,55,5,0.5));
+    animation: shimmerSlide 4s linear infinite;
   }
 
   .section-line {
@@ -767,12 +770,144 @@
     letter-spacing: 3px;
   }
 
+  @keyframes scrollLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
   /* SCROLL */
   html { scroll-behavior: smooth; }
 
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--ruby-deep); }
   ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+
+  /* LOGO SPIN - navbar */
+  @keyframes logoSpin {
+    0% { transform: perspective(600px) rotateY(0deg); }
+    100% { transform: perspective(600px) rotateY(360deg); }
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(201,168,76,0.3)) brightness(0.9); }
+    50% { filter: drop-shadow(0 0 25px rgba(240,208,96,0.9)) brightness(1.3); }
+  }
+
+  @keyframes glowPulseText {
+    0%, 100% {
+      text-shadow: 0 0 10px rgba(201,168,76,0.2);
+      opacity: 0.85;
+    }
+    50% {
+      text-shadow: 0 0 25px rgba(240,208,96,0.9), 0 0 50px rgba(201,168,76,0.4);
+      opacity: 1;
+    }
+  }
+
+  @keyframes float3d {
+    0%, 100% { transform: perspective(1000px) rotateX(2deg) rotateY(-1deg) translateY(0); }
+    33% { transform: perspective(1000px) rotateX(-1deg) rotateY(2deg) translateY(-8px); }
+    66% { transform: perspective(1000px) rotateX(1deg) rotateY(-2deg) translateY(-4px); }
+  }
+
+  @keyframes borderGlow {
+    0%, 100% { box-shadow: 0 0 10px rgba(201,168,76,0.15), 0 30px 80px rgba(0,0,0,0.8); }
+    50% { box-shadow: 0 0 30px rgba(201,168,76,0.4), 0 30px 80px rgba(0,0,0,0.8); }
+  }
+
+  /* SPINNING LOGO */
+  .spinning-logo {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: clamp(1.4em, 4vw, 2.2em);
+    background: linear-gradient(135deg, var(--gold-shadow) 0%, var(--gold-dark) 20%, var(--gold) 40%, var(--gold-shine) 55%, var(--gold) 70%, var(--gold-dark) 85%, var(--gold-shadow) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: logoSpin 6s linear infinite, glowPulse 3s ease-in-out infinite;
+    letter-spacing: 4px;
+    display: inline-block;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  /* VIDEO HERO 3D */
+  .video-hero-wrap {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto 35px;
+  }
+
+  .video-hero-3d {
+    animation: float3d 8s ease-in-out infinite;
+    transform-style: preserve-3d;
+  }
+
+  .video-hero-frame {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid var(--gold);
+    animation: borderGlow 4s ease-in-out infinite;
+  }
+
+  .video-hero-frame video,
+  .video-hero-frame iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: block;
+    background: #000;
+  }
+
+  .video-hero-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, var(--ruby-dark), var(--ruby-deep));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .play-btn {
+    width: 65px; height: 65px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6em;
+    color: var(--gold);
+    animation: borderGlow 3s ease-in-out infinite;
+  }
+
+  .video-hero-placeholder-text {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7em;
+    letter-spacing: 3px;
+    color: rgba(201,168,76,0.5);
+  }
+
+  .corner { position: absolute; width: 18px; height: 18px; z-index: 2; }
+  .corner-tl { top: -1px; left: -1px; border-top: 2px solid var(--gold-shine); border-left: 2px solid var(--gold-shine); }
+  .corner-tr { top: -1px; right: -1px; border-top: 2px solid var(--gold-shine); border-right: 2px solid var(--gold-shine); }
+  .corner-bl { bottom: -1px; left: -1px; border-bottom: 2px solid var(--gold-shine); border-left: 2px solid var(--gold-shine); }
+  .corner-br { bottom: -1px; right: -1px; border-bottom: 2px solid var(--gold-shine); border-right: 2px solid var(--gold-shine); }
+
+  /* HIDDEN ADMIN BUTTON */
+  .admin-hidden-btn {
+    display: block;
+    margin: 0 auto;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    opacity: 0.15;
+    transition: opacity 0.3s;
+    font-size: 1.2em;
+  }
+  .admin-hidden-btn:hover { opacity: 0.5; }
 
   /* TOAST */
   .toast {
@@ -802,6 +937,11 @@
 <body>
 
 <!-- TOAST -->
+<!-- LIGHTBOX -->
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;justify-content:center;align-items:center;cursor:zoom-out;">
+  <img id="lightbox-img" src="" style="max-width:92%;max-height:90vh;border-radius:8px;border:2px solid var(--gold);box-shadow:0 0 40px rgba(201,168,76,0.3);">
+</div>
+
 <div class="toast" id="toast"></div>
 
 <!-- LOGIN MODAL -->
@@ -822,6 +962,15 @@
     <button class="admin-close" onclick="closeAdmin()">✕ CERRAR</button>
   </div>
   <div class="admin-grid">
+
+    <!-- Video Hero -->
+    <div class="admin-card">
+      <h3>🎬 VIDEO PRINCIPAL</h3>
+      <input type="file" id="hero-video-upload" accept="video/*" style="color:var(--gold);padding:5px 0;">
+      <button class="admin-btn" onclick="uploadHeroVideo()">SUBIR VIDEO PRINCIPAL</button>
+      <input type="text" id="hero-video-url" placeholder="O pega URL de YouTube" style="margin-top:8px;">
+      <button class="admin-btn" onclick="addHeroVideoUrl()">USAR URL YOUTUBE</button>
+    </div>
 
     <!-- Servicios -->
     <div class="admin-card">
@@ -893,7 +1042,6 @@
       <li><a href="#videos">VIDEOS</a></li>
       <li><a href="#contacto">CONTACTO</a></li>
       <li><a href="#extras">+INFO</a></li>
-      <li><a href="#" class="admin-trigger" onclick="openLogin(event)">⚙ ADMIN</a></li>
     </ul>
   </div>
 </nav>
@@ -901,8 +1049,43 @@
 <!-- HERO -->
 <section id="inicio">
   <div>
-    <div class="hero-ornament">✦ ✦ ✦</div>
-    <h1 class="hero-title">MIGUEL<br>MASAJISTA</h1>
+    <!-- LOGO PULSANTE GRANDE ARRIBA DEL VIDEO -->
+    <div style="font-family:'Cinzel',serif;font-weight:900;font-size:clamp(1.8em,5vw,3.2em);letter-spacing:4px;text-align:center;margin-bottom:25px;background:linear-gradient(135deg,#3D2B00,#7A5C1E,#C9A84C,#F5E6A3,#C9A84C,#7A5C1E,#3D2B00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:glowPulseText 3s ease-in-out infinite;line-height:1.2;">
+      MIGUEL<br>MASAJISTA CDMX
+    </div>
+
+    <!-- VIDEO HERO 3D -->
+    <div class="video-hero-wrap">
+      <div class="video-hero-3d">
+        <div class="video-hero-frame" id="hero-frame">
+          <div class="corner corner-tl"></div>
+          <div class="corner corner-tr"></div>
+          <div class="corner corner-bl"></div>
+          <div class="corner corner-br"></div>
+          <div class="video-hero-placeholder" id="hero-placeholder">
+            <div class="play-btn">▶</div>
+            <div class="video-hero-placeholder-text">SUBE TU VIDEO DESDE EL PANEL ADMIN</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARRUSEL DE FOTOS -->
+    <div style="width:100%;overflow:hidden;margin:25px 0;">
+      <div id="hero-carousel" style="display:flex;gap:12px;animation:scrollLeft 25s linear infinite;width:max-content;">
+        <div data-src="" style="width:180px;height:120px;border-radius:8px;border:1px solid var(--gold);background:linear-gradient(135deg,var(--ruby-dark),var(--ruby-deep));display:flex;align-items:center;justify-content:center;flex-shrink:0;color:rgba(201,168,76,0.3);font-family:'Cinzel',serif;font-size:0.6em;letter-spacing:2px;text-align:center;flex-direction:column;gap:5px;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 20px rgba(201,168,76,0.4)'" onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='none'"><div style="font-size:2em">📸</div>FOTO 1</div>
+        <div data-src="" style="width:180px;height:120px;border-radius:8px;border:1px solid var(--gold);background:linear-gradient(135deg,var(--ruby-dark),var(--ruby-deep));display:flex;align-items:center;justify-content:center;flex-shrink:0;color:rgba(201,168,76,0.3);font-family:'Cinzel',serif;font-size:0.6em;letter-spacing:2px;text-align:center;flex-direction:column;gap:5px;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 20px rgba(201,168,76,0.4)'" onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='none'"><div style="font-size:2em">📸</div>FOTO 2</div>
+        <div data-src="" style="width:180px;height:120px;border-radius:8px;border:1px solid var(--gold);background:linear-gradient(135deg,var(--ruby-dark),var(--ruby-deep));display:flex;align-items:center;justify-content:center;flex-shrink:0;color:rgba(201,168,76,0.3);font-family:'Cinzel',serif;font-size:0.6em;letter-spacing:2px;text-align:center;flex-direction:column;gap:5px;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 20px rgba(201,168,76,0.4)'" onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='none'"><div style="font-size:2em">📸</div>FOTO 3</div>
+        <div data-src="" style="width:180px;height:120px;border-radius:8px;border:1px solid var(--gold);background:linear-gradient(135deg,var(--ruby-dark),var(--ruby-deep));display:flex;align-items:center;justify-content:center;flex-shrink:0;color:rgba(201,168,76,0.3);font-family:'Cinzel',serif;font-size:0.6em;letter-spacing:2px;text-align:center;flex-direction:column;gap:5px;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 20px rgba(201,168,76,0.4)'" onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='none'"><div style="font-size:2em">📸</div>FOTO 4</div>
+        <div data-src="" style="width:180px;height:120px;border-radius:8px;border:1px solid var(--gold);background:linear-gradient(135deg,var(--ruby-dark),var(--ruby-deep));display:flex;align-items:center;justify-content:center;flex-shrink:0;color:rgba(201,168,76,0.3);font-family:'Cinzel',serif;font-size:0.6em;letter-spacing:2px;text-align:center;flex-direction:column;gap:5px;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 20px rgba(201,168,76,0.4)'" onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='none'"><div style="font-size:2em">📸</div>FOTO 5</div>
+        <div data-src="" style="width:180px;height:120px;border-radius:8px;border:1px solid var(--gold);background:linear-gradient(135deg,var(--ruby-dark),var(--ruby-deep));display:flex;align-items:center;justify-content:center;flex-shrink:0;color:rgba(201,168,76,0.3);font-family:'Cinzel',serif;font-size:0.6em;letter-spacing:2px;text-align:center;flex-direction:column;gap:5px;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 20px rgba(201,168,76,0.4)'" onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='none'"><div style="font-size:2em">📸</div>FOTO 6</div>
+        <div data-src="" style="width:180px;height:120px;border-radius:8px;border:1px solid var(--gold);background:linear-gradient(135deg,var(--ruby-dark),var(--ruby-deep));display:flex;align-items:center;justify-content:center;flex-shrink:0;color:rgba(201,168,76,0.3);font-family:'Cinzel',serif;font-size:0.6em;letter-spacing:2px;text-align:center;flex-direction:column;gap:5px;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 20px rgba(201,168,76,0.4)'" onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='none'"><div style="font-size:2em">📸</div>FOTO 7</div>
+        <div data-src="" style="width:180px;height:120px;border-radius:8px;border:1px solid var(--gold);background:linear-gradient(135deg,var(--ruby-dark),var(--ruby-deep));display:flex;align-items:center;justify-content:center;flex-shrink:0;color:rgba(201,168,76,0.3);font-family:'Cinzel',serif;font-size:0.6em;letter-spacing:2px;text-align:center;flex-direction:column;gap:5px;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 20px rgba(201,168,76,0.4)'" onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='none'"><div style="font-size:2em">📸</div>FOTO 8</div>
+        <div data-src="" style="width:180px;height:120px;border-radius:8px;border:1px solid var(--gold);background:linear-gradient(135deg,var(--ruby-dark),var(--ruby-deep));display:flex;align-items:center;justify-content:center;flex-shrink:0;color:rgba(201,168,76,0.3);font-family:'Cinzel',serif;font-size:0.6em;letter-spacing:2px;text-align:center;flex-direction:column;gap:5px;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 20px rgba(201,168,76,0.4)'" onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='none'"><div style="font-size:2em">📸</div>FOTO 9</div>
+        <div data-src="" style="width:180px;height:120px;border-radius:8px;border:1px solid var(--gold);background:linear-gradient(135deg,var(--ruby-dark),var(--ruby-deep));display:flex;align-items:center;justify-content:center;flex-shrink:0;color:rgba(201,168,76,0.3);font-family:'Cinzel',serif;font-size:0.6em;letter-spacing:2px;text-align:center;flex-direction:column;gap:5px;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 20px rgba(201,168,76,0.4)'" onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='none'"><div style="font-size:2em">📸</div>FOTO 10</div>
+      </div>
+    </div>
+
     <div class="hero-subtitle">C D M X</div>
     <div class="hero-divider"></div>
     <p class="hero-desc" id="hero-desc">
@@ -976,6 +1159,9 @@
       <a href="https://wa.me/525524414537" target="_blank" class="contact-wa" id="wa-link">
         <span>📱</span> ESCRIBIR A WHATSAPP
       </a>
+      <a href="https://link.mercadopago.com.mx/tecnoclean" target="_blank" style="display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,#009ee3,#00b9f2);color:white;text-decoration:none;font-family:'Cinzel',serif;font-weight:700;font-size:0.95em;letter-spacing:2px;padding:16px 35px;border-radius:50px;box-shadow:0 8px 25px rgba(0,158,227,0.4);transition:all 0.3s;margin:10px 0;">
+        💳 PAGAR EN LÍNEA
+      </a>
       <div class="contact-info">
         <div><strong>TELÉFONO</strong><br><span id="contact-phone">55 2441 4537</span></div>
         <div style="margin-top:10px;"><strong>UBICACIÓN</strong><br><span id="contact-city">Ciudad de México</span></div>
@@ -1016,6 +1202,7 @@
 <footer>
   <p>⚜ MIGUEL MASAJISTA CDMX ⚜</p>
   <p style="margin-top:8px;">© 2025 · TODOS LOS DERECHOS RESERVADOS</p>
+  <button class="admin-hidden-btn" onclick="openLogin(event)" title="Admin">⚙</button>
 </footer>
 
 <script>
@@ -1177,9 +1364,46 @@ function addTestimonial() {
 
 // ===== LOGIN =====
 function openLogin(e) {
-  e.preventDefault();
+  if (e) e.preventDefault();
   document.getElementById('login-modal').classList.add('active');
   setTimeout(() => document.getElementById('admin-password').focus(), 300);
+}
+
+function uploadHeroVideo() {
+  const file = document.getElementById('hero-video-upload').files[0];
+  if (!file) { showToast('Selecciona un video'); return; }
+  const frame = document.getElementById('hero-frame');
+  const ph = document.getElementById('hero-placeholder');
+  if (ph) ph.remove();
+  const old = frame.querySelector('video,iframe');
+  if (old) old.remove();
+  const v = document.createElement('video');
+  v.src = URL.createObjectURL(file);
+  v.controls = true; v.autoplay = true; v.muted = true; v.loop = true;
+  v.style.cssText = 'width:100%;aspect-ratio:16/9;display:block;background:#000;';
+  frame.appendChild(v);
+  showToast('✓ Video principal actualizado');
+}
+
+function addHeroVideoUrl() {
+  const url = document.getElementById('hero-video-url').value.trim();
+  if (!url) { showToast('Ingresa una URL'); return; }
+  let embed = url;
+  if (url.includes('youtube.com/watch?v=')) embed = url.replace('watch?v=', 'embed/') + '?autoplay=1&mute=1&loop=1';
+  else if (url.includes('youtu.be/')) embed = 'https://www.youtube.com/embed/' + url.split('youtu.be/')[1] + '?autoplay=1&mute=1&loop=1';
+  const frame = document.getElementById('hero-frame');
+  const ph = document.getElementById('hero-placeholder');
+  if (ph) ph.remove();
+  const old = frame.querySelector('video,iframe');
+  if (old) old.remove();
+  const iframe = document.createElement('iframe');
+  iframe.src = embed;
+  iframe.frameBorder = '0';
+  iframe.allow = 'autoplay; fullscreen';
+  iframe.style.cssText = 'width:100%;aspect-ratio:16/9;display:block;';
+  frame.appendChild(iframe);
+  showToast('✓ Video principal actualizado');
+  document.getElementById('hero-video-url').value = '';
 }
 
 function checkLogin() {
@@ -1207,7 +1431,34 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 3000);
 }
 
-// ===== HAMBURGER MENU =====
+// ===== CAROUSEL HOVER & LIGHTBOX =====
+const carousel = document.getElementById('hero-carousel');
+if (carousel) {
+  // Pausar al hover
+  carousel.addEventListener('mouseover', () => {
+    carousel.style.animationPlayState = 'paused';
+  });
+  carousel.addEventListener('mouseleave', () => {
+    carousel.style.animationPlayState = 'running';
+  });
+
+  // Lightbox al clic en foto
+  carousel.addEventListener('click', e => {
+    const item = e.target.closest('[data-src]');
+    if (!item) return;
+    const src = item.getAttribute('data-src');
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    lbImg.src = src;
+    lb.style.display = 'flex';
+  });
+}
+
+// Cerrar lightbox
+document.addEventListener('click', e => {
+  const lb = document.getElementById('lightbox');
+  if (e.target === lb) lb.style.display = 'none';
+});
 function toggleMenu() {
   const menu = document.getElementById('nav-links');
   const btn = document.getElementById('hamburger');
