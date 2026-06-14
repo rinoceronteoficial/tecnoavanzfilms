@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIGUELMASAJISTACDMX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #A8E4D8;
+      color: #0A2535;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #083650;
+      padding: 40px 24px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(0,201,177,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .header-eyebrow {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      color: #00C9B1;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px;
+      font-weight: 300;
+      color: #E8F6FA;
+      line-height: 1.15;
+      letter-spacing: 1px;
+    }
+
+    header h1 em {
+      font-style: italic;
+      color: #00C9B1;
+    }
+
+    .header-line {
+      width: 40px;
+      height: 1px;
+      background: #00C9B1;
+      margin: 20px auto 14px;
+      opacity: 0.6;
+    }
+
+    .header-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-top: 10px;
+      background: linear-gradient(90deg, #8B6914, #F5D17A, #D4A017, #F9E077, #B8955A, #F5D17A, #8B6914);
+      background-size: 250% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: goldShine 2.8s ease-in-out infinite, pulseGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes goldShine {
+      0%   { background-position: 0% center; }
+      50%  { background-position: 100% center; }
+      100% { background-position: 0% center; }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { filter: drop-shadow(0 0 6px rgba(245,209,122,0.4)); }
+      50%       { filter: drop-shadow(0 0 20px rgba(249,224,119,1)); }
+    }
+
+    main {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 20px 100px;
+    }
+
+    .section-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #083650;
+      text-align: center;
+      padding: 36px 0 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 2px;
+      padding: 24px 22px 20px;
+      margin-bottom: 14px;
+      border-left: 2px solid #00B5A0;
+      box-shadow: 0 2px 16px rgba(8,54,80,0.10);
+    }
+
+    /* TÍTULO DE PAQUETE - rojo metal luminoso parpadeante */
+    .pack-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #6B0000, #FF2E2E, #C0392B, #FF6B6B, #B22222, #FF2E2E, #6B0000);
+      background-size: 250% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: redShine 2.5s ease-in-out infinite, redPulse 1.8s ease-in-out infinite;
+      display: block;
+    }
+
+    @keyframes redShine {
+      0%   { background-position: 0% center; }
+      50%  { background-position: 100% center; }
+      100% { background-position: 0% center; }
+    }
+
+    @keyframes redPulse {
+      0%, 100% { filter: drop-shadow(0 0 4px rgba(255,46,46,0.4)); }
+      50%       { filter: drop-shadow(0 0 14px rgba(255,46,46,1)); }
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: #0A2535;
+      line-height: 1.2;
+      flex: 1;
+    }
+
+    .card-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #B8955A;
+      white-space: nowrap;
+    }
+
+    .card-duration {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #007A6C;
+      margin-bottom: 10px;
+    }
+
+    .card-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #0A2535;
+      font-weight: 500;
+    }
+
+    .card-tag {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #009E8C;
+      border: 1px solid #00B5A0;
+      border-radius: 20px;
+      padding: 3px 10px;
+    }
+
+    .includes-block {
+      background: #083650;
+      border-radius: 2px;
+      padding: 28px 22px;
+      margin: 28px 0 14px;
+    }
+
+    .includes-block h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 300;
+      font-style: italic;
+      color: #00C9B1;
+      margin-bottom: 16px;
+    }
+
+    .includes-list { list-style: none; }
+
+    .includes-list li {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #8EE0D4;
+      padding: 5px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-weight: 400;
+    }
+
+    .includes-list li::before {
+      content: '—';
+      color: #B8955A;
+      flex-shrink: 0;
+    }
+
+    .reserva-block {
+      background: #7DDDD0;
+      border-radius: 2px;
+      padding: 24px 22px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .reserva-block h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: #0A2535;
+      margin-bottom: 10px;
+    }
+
+    .reserva-block p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: #083650;
+      font-weight: 500;
+    }
+
+    .nota-block {
+      border: 1px solid #00B5A0;
+      border-radius: 2px;
+      padding: 20px 22px;
+      text-align: center;
+    }
+
+    .nota-block p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #083650;
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 24px 90px;
+      border-top: 1px solid #5ECEC0;
+    }
+
+    footer p {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #008C7C;
+    }
+
+    /* BOTÓN FLOTANTE WHATSAPP */
+    .wa-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 24px;
+      width: 62px;
+      height: 62px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      z-index: 9999;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.6);
+      animation: waPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes waPulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+      50%       { box-shadow: 0 4px 36px rgba(37,211,102,1); }
+    }
+
+    .wa-btn svg {
+      width: 34px;
+      height: 34px;
+      fill: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="header-eyebrow">Menú de Servicios</p>
+    <h1>Masajes, Exfoliación<br/>&amp; <em>Bienestar</em></h1>
+    <div class="header-line"></div>
+    <p class="header-name">Miguel Masajista CDMX</p>
+  </header>
+
+  <main>
+    <p class="section-label">Nuestros servicios</p>
+
+    <!-- PAQUETE ORO -->
+    <div class="card">
+      <span class="pack-label">✦ PAQUETE ORO ✦</span>
+      <div class="card-header">
+        <span class="card-title">Masaje Clásico</span>
+        <span class="card-price">$1,000</span>
+      </div>
+      <p class="card-duration">1 hora</p>
+      <p class="card-desc">Sesión enfocada en las zonas de mayor tensión: <strong>cuello, espalda y pies</strong>. Ideal para relajación y alivio del estrés del día a día.</p>
+    </div>
+
+    <!-- PAQUETE EUROPEO -->
+    <div class="card">
+      <span class="pack-label">✦ PAQUETE EUROPEO ✦</span>
+      <div class="card-header">
+        <span class="card-title">Masaje Tejido Profundo</span>
+        <span class="card-price">$1,500</span>
+      </div>
+      <p class="card-duration">2 horas</p>
+      <p class="card-desc">Masaje holístico de <strong>cuerpo completo</strong> con presiones precisas y variedad de técnicas. Funciona para <strong>rehabilitación muscular</strong> y trabajo de alto rendimiento.</p>
+      <span class="card-tag">Ideal para deportistas</span>
+    </div>
+
+    <!-- PAQUETE EXFOLIANTE -->
+    <div class="card">
+      <span class="pack-label">✦ PAQUETE EXFOLIANTE ✦</span>
+      <div class="card-header">
+        <span class="card-title">Exfoliación Cuerpo Completo</span>
+        <span class="card-price">$1,500</span>
+      </div>
+      <p class="card-duration">1 hora</p>
+      <p class="card-desc">Exfoliación en todo el cuerpo <strong>incluyendo facial</strong>, con shampoo exclusivo exfoliante. Piel renovada de pies a cabeza.</p>
+    </div>
+
+    <!-- PAQUETE ORO PLUS -->
+    <div class="card">
+      <span class="pack-label">✦ PAQUETE ORO PLUS ✦</span>
+      <div class="card-header">
+        <span class="card-title">Exfoliación + Masaje Clásico</span>
+        <span class="card-price">$2,000</span>
+      </div>
+      <p class="card-duration">2 horas</p>
+      <p class="card-desc">La combinación perfecta para una experiencia completa de <strong>cuidado y relajación</strong>.</p>
+    </div>
+
+    <!-- PAQUETE EUROPEO PLUS -->
+    <div class="card">
+      <span class="pack-label">✦ PAQUETE EUROPEO PLUS ✦</span>
+      <div class="card-header">
+        <span class="card-title">Exfoliación + Tejido Profundo</span>
+        <span class="card-price">$2,500</span>
+      </div>
+      <p class="card-duration">3 a 4 horas por sesión</p>
+      <p class="card-desc">La experiencia más completa: exfoliación total más masaje holístico de cuerpo completo con <strong>técnicas de rehabilitación muscular</strong>.</p>
+      <span class="card-tag">Sesión premium</span>
+    </div>
+
+    <!-- DATO EXTRA -->
+    <div class="card">
+      <span class="pack-label">✦ DATO EXTRA ✦</span>
+      <div style="margin-top: 6px;">
+        <p style="font-size:14px; font-weight:700; color:#0A2535; margin-bottom:4px; text-transform:uppercase; letter-spacing:1px;">🤲 Masaje Clásico</p>
+        <p class="card-desc" style="margin-bottom:16px;">Se prioriza en <strong>cuello, espalda y pies</strong>.</p>
+
+        <p style="font-size:14px; font-weight:700; color:#0A2535; margin-bottom:4px; text-transform:uppercase; letter-spacing:1px;">💪 Masaje Tejido Profundo</p>
+        <p class="card-desc" style="margin-bottom:16px;">Es tipo <strong>holístico</strong> — cuerpo completo con presiones más exactas y variedad de técnicas que funcionan para <strong>rehabilitación muscular</strong>. Ideal para deportistas y trabajo de alto rendimiento.</p>
+
+        <p style="font-size:14px; font-weight:700; color:#0A2535; margin-bottom:4px; text-transform:uppercase; letter-spacing:1px;">✨ Exfoliación</p>
+        <p class="card-desc">En todo el cuerpo <strong>incluyendo facial</strong>, con shampoo exclusivo exfoliante.</p>
+      </div>
+    </div>
+
+    <div class="includes-block">
+      <h3>Las tarifas incluyen:</h3>
+      <ul class="includes-list">
+        <li>Acceso al establecimiento</li>
+        <li>1 botella de agua</li>
+        <li>2 horas de estacionamiento cortesía por parte del Señorial</li>
+        <li>Todos los insumos utilizados durante el proceso</li>
+      </ul>
+    </div>
+
+    <div class="reserva-block">
+      <h3>¿Cómo reservar?</h3>
+      <p>Se reserva con <strong>24 horas hábiles de anticipación</strong>.<br/>Anticipo de <strong>$500 vía SPEI</strong>.</p>
+    </div>
+
+    <div class="nota-block">
+      <p>🚫 <strong>Lo que ves es lo que hay.</strong><br/>Estos son todos los servicios disponibles.<br/>No contamos con opciones adicionales.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>MIGUELMASAJISTACDMX · Todos los derechos reservados</p>
+  </footer>
+
+  <!-- BOTÓN FLOTANTE WHATSAPP -->
+  <a class="wa-btn" href="https://wa.me/5215524414735" target="_blank" aria-label="Escríbeme por WhatsApp">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 0C7.164 0 0 7.163 0 16c0 2.822.736 5.469 2.027 7.773L0 32l8.437-2.01A15.938 15.938 0 0016 32c8.836 0 16-7.163 16-16S24.836 0 16 0zm0 29.333a13.27 13.27 0 01-6.77-1.853l-.486-.29-5.01 1.195 1.234-4.874-.317-.5A13.238 13.238 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.862c-.398-.199-2.354-1.162-2.72-1.294-.364-.133-.63-.199-.895.2-.265.398-1.028 1.294-1.26 1.56-.232.266-.464.299-.862.1-.398-.2-1.681-.62-3.202-1.976-1.183-1.056-1.982-2.36-2.214-2.758-.232-.398-.025-.613.175-.811.179-.178.398-.465.597-.697.2-.232.266-.398.398-.664.133-.265.067-.498-.033-.697-.1-.199-.895-2.157-1.227-2.953-.322-.775-.65-.67-.895-.682-.232-.01-.498-.013-.763-.013s-.697.1-1.062.498c-.365.398-1.393 1.361-1.393 3.319 0 1.957 1.426 3.848 1.625 4.114.2.265 2.806 4.284 6.797 5.998.95.41 1.692.655 2.27.839.954.304 1.822.261 2.508.158.765-.114 2.354-.962 2.686-1.891.332-.93.332-1.727.232-1.892-.1-.164-.364-.265-.763-.464z"/>
+    </svg>
+  </a>
+
+</body>
+</html>
